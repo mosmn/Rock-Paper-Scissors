@@ -30,10 +30,6 @@ IOFC:
         9) game() plays 5 rounds
         10) game() keeps score and reports a winner or loser at the end
 
-IO Format : 
-
-line 1:
-
 
 Variables / constants: 
     1) playerSelection
@@ -47,14 +43,13 @@ Variables / constants:
 
 Algorithm:
 BEGIN
+
     FUNCTION getComputerChoice()
         SET computerSelection = ['rock', 'paper', 'scissors']
         SET randomIndex = Math.floor(Math.random() * computerSelection.length)
         SET computerSelection = computerSelection[randomIndex]
         RETURN computerSelection
     END FUNCTION
-
-    SET computerSelection = getComputerChoice()
 
     FUNCTION playRound()
         IF playerSelection === computerSelection
