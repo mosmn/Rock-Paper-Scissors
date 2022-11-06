@@ -8,7 +8,7 @@ Problem: create a rock, paper, scissors game that plays against the computer in 
 
 IOFC:
      Input : 
-     1) playerSelection
+        1) playerSelection
 
      Output: 
         1) computerSelection
@@ -97,8 +97,10 @@ BEGIN
 
 END
 */ 
+
 let getComputerChoice = () => {
     let computerSelection = ['rock', 'paper', 'scissors'];
+    // math.random() returns a number between 0 and 1 and we multiply it by the length of the array to get a random number between 0 and 3. We then use math.floor() to round down to the nearest whole number. We then use that number as the index of the array to get a random element from the array.
     let randomIndex = Math.floor(Math.random() * computerSelection.length);
     computerSelection = computerSelection[randomIndex];
     return computerSelection;
@@ -126,7 +128,7 @@ let game = () => {
     let playerScore = 0;
     let computerScore = 0;
     for (let round = 1; round <= 5; round++) {
-        playerSelection = prompt("Rock, Paper, or Scissors?");
+        playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
         computerSelection = getComputerChoice();
         if (playRound() === "You win! Rock beats Scissors" || playRound() === "You win! Paper beats Rock" || playRound() === "You win! Scissors beats Paper") {
             playerScore++;
