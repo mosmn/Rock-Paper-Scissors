@@ -109,8 +109,6 @@ let getComputerChoice = () => {
     return computerSelection;
 }
 
-let computerSelection = getComputerChoice();
-
 let playRound = () => {
     if (playerSelection === computerSelection) {
         return "It's a tie!";
