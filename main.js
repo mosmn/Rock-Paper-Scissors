@@ -73,7 +73,7 @@ BEGIN
         SET playerScore = 0
         SET computerScore = 0
         FOR round = 1; round <= 5; round++
-            SET playerSelection = prompt("Rock, Paper, or Scissors?")
+            SET playerSelection = prompt("Rock, Paper, or Scissors?") toLowerCase()
             SET computerSelection = getComputerChoice()
             IF playRound() === "You win! Rock beats Scissors" || playRound() === "You win! Paper beats Rock" || playRound() === "You win! Scissors beats Paper"
                 playerScore++
