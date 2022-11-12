@@ -127,26 +127,30 @@ let playRound = () => {
 let game = () => {
     let playerScore = 0;
     let computerScore = 0;
-    for (let round = 1; round <= 5; round++) {
-        playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
+    // for (let round = 1; round <= 5; round++) {
+        // playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
         computerSelection = getComputerChoice();
         if (playRound() === "You win! Rock beats Scissors" || playRound() === "You win! Paper beats Rock" || playRound() === "You win! Scissors beats Paper") {
             playerScore++;
         } else if (playRound() === "You lose! Paper beats Rock" || playRound() === "You lose! Scissors beats Paper" || playRound() === "You lose! Rock beats Scissors") {
             computerScore++;
         }
-    }
-    if (playerScore > computerScore) {
-        winner = "You win!";
-    } else if (playerScore < computerScore) {
-        winner = "You lose!";
-    } else if (playerScore === computerScore) {
-        winner = "It's a tie!";
-    }
+    // }
+    // if (playerScore > computerScore) {
+    //     winner = "You win!";
+    // } else if (playerScore < computerScore) {
+    //     winner = "You lose!";
+    // } else if (playerScore === computerScore) {
+    //     winner = "It's a tie!";
+    // }
     console.log(playerScore);
     console.log(computerScore);
-    return winner;
+    console.log(playRound());
+    // return winner;
 }
-
 console.log(game());
+
+
+
+
 
