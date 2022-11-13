@@ -1,5 +1,5 @@
 /*
-Problem: create a rock, paper, scissors game that plays against the computer in the console.
+Problem: create a rock, paper, scissors game that plays against the computer.
 - create a function called getComputerChoice that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. We’ll use this function in the game to make the computer’s play.
 - Write a function called playRound that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
   Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
@@ -43,70 +43,34 @@ Variables / constants:
 
 Algorithm:
 BEGIN
+    LET ComputerSelection;
+    LET playerSelection;
+    LET playerScore = 0;
+    LET computerScore = 0;
 
-    FUNCTION getComputerChoice()
-        SET computerSelection = ['rock', 'paper', 'scissors']
-        SET randomIndex = Math.floor(Math.random() * computerSelection.length)
-        SET computerSelection = computerSelection[randomIndex]
-        RETURN computerSelection
-    END FUNCTION
+    let buttons = document.querySelectorAll(".button");
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const img = document.querySelector('img');
+            playerSelection = img.alt.toLowerCase();
 
-    FUNCTION playRound()
-        IF playerSelection === computerSelection
-            RETURN "It's a tie!"
-        ELSE IF playerSelection === 'rock' && computerSelection === 'scissors'
-            RETURN "You win! Rock beats Scissors"
-        ELSE IF playerSelection === 'rock' && computerSelection === 'paper'
-            RETURN "You lose! Paper beats Rock"
-        ELSE IF playerSelection === 'paper' && computerSelection === 'rock'
-            RETURN "You win! Paper beats Rock"
-        ELSE IF playerSelection === 'paper' && computerSelection === 'scissors'
-            RETURN "You lose! Scissors beats Paper"
-        ELSE IF playerSelection === 'scissors' && computerSelection === 'paper'
-            RETURN "You win! Scissors beats Paper"
-        ELSE IF playerSelection === 'scissors' && computerSelection === 'rock'
-            RETURN "You lose! Rock beats Scissors"
-        END IF
-    END FUNCTION
+            playRound(playerSelection, computerSelection);
+        });
+    });
 
-    FUNCTION game()
-        SET playerScore = 0
-        SET computerScore = 0
-        FOR round = 1; round <= 5; round++
-            SET playerSelection = prompt("Rock, Paper, or Scissors?") toLowerCase()
-            SET computerSelection = getComputerChoice()
-            IF playRound() === "You win! Rock beats Scissors" || playRound() === "You win! Paper beats Rock" || playRound() === "You win! Scissors beats Paper"
-                playerScore++
-            ELSE IF playRound() === "You lose! Paper beats Rock" || playRound() === "You lose! Scissors beats Paper" || playRound() === "You lose! Rock beats Scissors"
-                computerScore++
-            END IF
-        END FOR
-        IF playerScore > computerScore
-            SET winner = "You win!"
-        ELSE IF playerScore < computerScore
-            SET winner = "You lose!"
-        ELSE IF playerScore === computerScore
-            SET winner = "It's a tie!"
-        END IF
-            CONSOLE.LOG(playerScore)
-            CONSOLE.LOG(computerScore)
-        RETURN winner
-    END FUNCTION
 
-    CONSOLE.LOG(game())
 
 END
 */ 
 
 let getComputerChoice = () => {
     let computerSelection = ['rock', 'paper', 'scissors'];
-    // math.random() returns a number between 0 and 1 and we multiply it by the length of the array to get a random number between 0 and 3. We then use math.floor() to round down to the nearest whole number. We then use that number as the index of the array to get a random element from the array.
     let randomIndex = Math.floor(Math.random() * computerSelection.length);
     computerSelection = computerSelection[randomIndex];
     return computerSelection;
 }
 
-let playRound = () => {
+let playRound = (playerSelection, computerSelection) => {
     if (playerSelection === computerSelection) {
         return "It's a tie!";
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
@@ -128,7 +92,15 @@ let game = () => {
     let playerScore = 0;
     let computerScore = 0;
     // for (let round = 1; round <= 5; round++) {
-        // playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
+        let buttons = document.querySelectorAll(".button");
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const img = document.querySelector('img');
+                playerSelection = img.alt.toLowerCase();
+    
+                playRound(playerSelection, computerSelection);
+            });
+        });
         computerSelection = getComputerChoice();
         if (playRound() === "You win! Rock beats Scissors" || playRound() === "You win! Paper beats Rock" || playRound() === "You win! Scissors beats Paper") {
             playerScore++;
@@ -148,6 +120,7 @@ let game = () => {
     console.log(playRound());
     // return winner;
 }
+
 console.log(game());
 
 
