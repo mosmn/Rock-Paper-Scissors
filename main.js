@@ -30,47 +30,45 @@ IOFC:
         9) game() plays 5 rounds
         10) game() keeps score and reports a winner or loser at the end
 
-
-Variables / constants: 
-    1) playerSelection
-    2) computerSelection
-    3) playerScore
-    4) computerScore
-    5) round
-    6) winner
-
         
 
 Algorithm:
 BEGIN
-    LET ComputerSelection;
-    LET playerSelection;
-    LET playerScore = 0;
-    LET computerScore = 0;
-
-    let buttons = document.querySelectorAll(".button");
-    buttons.forEach((button) => {
-        button.addEventListener('click', () => {
-            const img = document.querySelector('img');
-            playerSelection = img.alt.toLowerCase();
-
-            playRound(playerSelection, computerSelection);
-        });
-    });
-
-
-
+    1) get player selection by add event listener to the images
+    2) create the function that gets random computer selections
+    3) create the play round function that takes 2 parmeters and outputs the winner in the console
+    4) make the selections of each party appear in the DOM gane box
 END
 */ 
 
-let getComputerChoice = () => {
+let buttons = document.querySelectorAll(".button");
+
+let playerSelection = buttons.forEach((button) => {
+    button.addEventListener('click', e => {
+        const playerSelection = button.id.toLowerCase();
+        markPlayerSelection(playerSelection);
+
+        let computerSelection = getComputerChoice();
+        console.log(computerSelection);
+
+        let result = playRound(computerSelection, playerSelection);
+        console.log(result);
+    });
+});
+
+const markPlayerSelection = (playerSelection) => {
+    console.log(playerSelection);
+}
+
+
+const getComputerChoice = () => {
     let computerSelection = ['rock', 'paper', 'scissors'];
     let randomIndex = Math.floor(Math.random() * computerSelection.length);
     computerSelection = computerSelection[randomIndex];
     return computerSelection;
 }
 
-let playRound = (playerSelection, computerSelection) => {
+const playRound = (computerSelection, playerSelection) => {
     if (playerSelection === computerSelection) {
         return "It's a tie!";
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
@@ -88,42 +86,6 @@ let playRound = (playerSelection, computerSelection) => {
     }
 }
 
-let game = () => {
-    let playerScore = 0;
-    let computerScore = 0;
-    // for (let round = 1; round <= 5; round++) {
-        let buttons = document.querySelectorAll(".button");
-        buttons.forEach((button) => {
-            button.addEventListener('click', () => {
-                const img = document.querySelector('img');
-                playerSelection = img.alt.toLowerCase();
-    
-                playRound(playerSelection, computerSelection);
-            });
-        });
-        computerSelection = getComputerChoice();
-        if (playRound() === "You win! Rock beats Scissors" || playRound() === "You win! Paper beats Rock" || playRound() === "You win! Scissors beats Paper") {
-            playerScore++;
-        } else if (playRound() === "You lose! Paper beats Rock" || playRound() === "You lose! Scissors beats Paper" || playRound() === "You lose! Rock beats Scissors") {
-            computerScore++;
-        }
-    // }
-    // if (playerScore > computerScore) {
-    //     winner = "You win!";
-    // } else if (playerScore < computerScore) {
-    //     winner = "You lose!";
-    // } else if (playerScore === computerScore) {
-    //     winner = "It's a tie!";
-    // }
-    console.log(playerScore);
-    console.log(computerScore);
-    console.log(playRound());
-    // return winner;
-}
-
-console.log(game());
-
-
-
+const gamebox = document.querySelector(".game__box");
 
 
