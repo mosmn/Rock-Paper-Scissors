@@ -43,6 +43,7 @@ BEGIN
     7) create a function that updates the score
     8) create a function that plays 5 rounds
     9) create a function that displays the winner
+    10) create a function that resets the game and score when the reset button is clicked
 END
 */ 
 
@@ -52,27 +53,16 @@ let buttons = document.querySelectorAll(".button");
 let playerSelection = buttons.forEach((button) => {
     button.addEventListener('click', e => {
         const playerSelection = button.id.toLowerCase();
-        markPlayerSelection(playerSelection);
-
         let computerSelection = getComputerChoice();
-        console.log(computerSelection);
-
         let result = playRound(computerSelection, playerSelection);
-        console.log(result);
-
         removeWeapons();
-
         weapons(playerSelection, computerSelection);
-
         displayResult (result);
-
         updateScore(result);
+        game(playerScore, computerScore);
+        displayWinner(game(playerScore, computerScore));
     });
 });
-
-const markPlayerSelection = (playerSelection) => {
-    console.log(playerSelection);
-}
 
 // 2) create the function that gets random computer selections
 const getComputerChoice = () => {
@@ -131,10 +121,9 @@ const removeWeapons = () => {
 // 7) create a function that updates the score and displays it in the DOM
 let playerScore = 0;
 let computerScore = 0;
-
+const playerScoreDisplay = document.querySelector('.player__score');
+const computerScoreDisplay = document.querySelector('.computer__score');
 const updateScore = (result) => {
-    const playerScoreDisplay = document.querySelector('.player__score');
-    const computerScoreDisplay = document.querySelector('.computer__score');
     if (result === "You win! Rock beats Scissors" || result === "You win! Paper beats Rock" || result === "You win! Scissors beats Paper") {
         playerScore++;
         playerScoreDisplay.textContent = playerScore;
@@ -142,11 +131,36 @@ const updateScore = (result) => {
         computerScore++;
         computerScoreDisplay.textContent = computerScore;
     }
+
+    return playerScore, computerScore;
 }
 
-
 // 8) create a function that plays 5 rounds
+const game = (playerScore, computerScore) => {
+    if (playerScore === 5) {
+        return "You win the game!";
+    } else if (computerScore === 5) {
+        return "You lose the game!";
+    }
+}
+
+// 9) create a function that displays the winner in the DOM
+const winnerDisplay = document.querySelector('.game__result--title');
+const displayWinner = (game) => {
+    winnerDisplay.textContent = game;
+}
+
+// 10) create a function that resets the game when the reset button is clicked
+const resetButton = document.querySelector('.game__reset--btn');
+resetButton.addEventListener('click', () => {
+    playerScore = 0;
+    computerScore = 0;
+    removeWeapons();
+    playerScoreDisplay.textContent = playerScore;
+    computerScoreDisplay.textContent = computerScore;
+    winnerDisplay.textContent = '';
+});
+
+// 11) create a function that stops the game when the winner is declared
 
 
-
-// 9) create a function that displays the winner
