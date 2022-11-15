@@ -37,10 +37,14 @@ BEGIN
     1) get player selection by add event listener to the images
     2) create the function that gets random computer selections
     3) create the play round function that takes 2 parmeters and outputs the winner in the console
-    4) make the selections of each party appear in the DOM gane box
+    4) make the selections of each party appear in the DOM gane box using a function to add element img to the DOM
+    5) a function that displays playRound return value in the DOM
+    6) creat a function that removes the previous weapons and result
+    7) create a function that updates the score
 END
 */ 
 
+// 1) get player selection by add event listener to the images
 let buttons = document.querySelectorAll(".button");
 
 let playerSelection = buttons.forEach((button) => {
@@ -53,6 +57,14 @@ let playerSelection = buttons.forEach((button) => {
 
         let result = playRound(computerSelection, playerSelection);
         console.log(result);
+
+        weapons(playerSelection, computerSelection);
+
+        displayResult (result);
+
+        removeWeapons();
+
+        updateScore(result);
     });
 });
 
@@ -60,7 +72,7 @@ const markPlayerSelection = (playerSelection) => {
     console.log(playerSelection);
 }
 
-
+// 2) create the function that gets random computer selections
 const getComputerChoice = () => {
     let computerSelection = ['rock', 'paper', 'scissors'];
     let randomIndex = Math.floor(Math.random() * computerSelection.length);
@@ -68,6 +80,7 @@ const getComputerChoice = () => {
     return computerSelection;
 }
 
+// 3) create the play round function that takes 2 parmeters and outputs the winner in the console
 const playRound = (computerSelection, playerSelection) => {
     if (playerSelection === computerSelection) {
         return "It's a tie!";
@@ -86,6 +99,52 @@ const playRound = (computerSelection, playerSelection) => {
     }
 }
 
-const gamebox = document.querySelector(".game__box");
+// 4) make the selections of each party appear in the DOM gane box using a function to add element img to the DOM
+const weapons = (playerSelection, computerSelection) => {
+    const playerWeapon = document.createElement('img');
+    const computerWeapon = document.createElement('img');
+    playerWeapon.src = `./imgs/${playerSelection}.png`;
+    computerWeapon.src = `./imgs/${computerSelection}.png`;
+    document.querySelector('.image__selection').appendChild(playerWeapon);
+    document.querySelector('.image__selection').appendChild(computerWeapon);
+}
 
+// 5) a function that displays playRound return value in the DOM
+const displayResult = (result) => {
+    const resultDisplay = document.createElement('p');
+    resultDisplay.textContent = result;
+    document.querySelector('.displayresult').appendChild(resultDisplay);
+}
 
+// 6) creat a function that removes the previous player and computer weapons and result
+const removeWeapons = () => {
+    const imageSelection = document.querySelector('.image__selection');
+    const displayResult = document.querySelector('.displayresult');
+    imageSelection.removeChild(imageSelection.childNodes[0]);
+    imageSelection.removeChild(imageSelection.childNodes[1]);
+    displayResult.removeChild(displayResult.childNodes[0]);
+}
+
+// 7) create a function that updates the score
+// const updateScore = (result) => {
+//     let ps = 0;
+//     let cs = 0;
+//     const playerScore = document.querySelector('.player__score');
+//     const computerScore = document.querySelector('.computer__score');
+//     while (ps < 5 || cs < 5) {
+//         if (result === "You win! Rock beats Scissors" || result === "You win! Paper beats Rock" || result === "You win! Scissors beats Paper") {
+//             ps++;
+//             playerScore.textContent = ps;
+//         } else if (result === "You lose! Paper beats Rock" || result === "You lose! Scissors beats Paper" || result === "You lose! Rock beats Scissors") {
+//             cs++;
+//             computerScore.textContent = cs;
+//         }
+//     }
+
+// //     if (ps === 5) {
+// //         alert("You win!");
+// //     }
+// //     if (cs === 5) {
+// //         alert("You lose!");
+// //     }
+// }
