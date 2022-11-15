@@ -41,6 +41,8 @@ BEGIN
     5) a function that displays playRound return value in the DOM
     6) creat a function that removes the previous weapons and result
     7) create a function that updates the score
+    8) create a function that plays 5 rounds
+    9) create a function that displays the winner
 END
 */ 
 
@@ -58,11 +60,11 @@ let playerSelection = buttons.forEach((button) => {
         let result = playRound(computerSelection, playerSelection);
         console.log(result);
 
+        removeWeapons();
+
         weapons(playerSelection, computerSelection);
 
         displayResult (result);
-
-        removeWeapons();
 
         updateScore(result);
     });
@@ -100,13 +102,15 @@ const playRound = (computerSelection, playerSelection) => {
 }
 
 // 4) make the selections of each party appear in the DOM gane box using a function to add element img to the DOM
+const imageSelection = document.querySelector('.image__selection');
+
 const weapons = (playerSelection, computerSelection) => {
     const playerWeapon = document.createElement('img');
     const computerWeapon = document.createElement('img');
     playerWeapon.src = `./imgs/${playerSelection}.png`;
     computerWeapon.src = `./imgs/${computerSelection}.png`;
-    document.querySelector('.image__selection').appendChild(playerWeapon);
-    document.querySelector('.image__selection').appendChild(computerWeapon);
+    imageSelection.appendChild(playerWeapon);
+    imageSelection.appendChild(computerWeapon);
 }
 
 // 5) a function that displays playRound return value in the DOM
@@ -116,35 +120,33 @@ const displayResult = (result) => {
     document.querySelector('.displayresult').appendChild(resultDisplay);
 }
 
-// 6) creat a function that removes the previous player and computer weapons and result
+// 6) creat a function that removes the previous weapons and result
 const removeWeapons = () => {
-    const imageSelection = document.querySelector('.image__selection');
-    const displayResult = document.querySelector('.displayresult');
-    imageSelection.removeChild(imageSelection.childNodes[0]);
-    imageSelection.removeChild(imageSelection.childNodes[1]);
-    displayResult.removeChild(displayResult.childNodes[0]);
+    const remove = document.querySelector('.image__selection');
+    remove.innerHTML = '';
+    const removeResult = document.querySelector('.displayresult');
+    removeResult.innerHTML = '';
 }
 
-// 7) create a function that updates the score
-// const updateScore = (result) => {
-//     let ps = 0;
-//     let cs = 0;
-//     const playerScore = document.querySelector('.player__score');
-//     const computerScore = document.querySelector('.computer__score');
-//     while (ps < 5 || cs < 5) {
-//         if (result === "You win! Rock beats Scissors" || result === "You win! Paper beats Rock" || result === "You win! Scissors beats Paper") {
-//             ps++;
-//             playerScore.textContent = ps;
-//         } else if (result === "You lose! Paper beats Rock" || result === "You lose! Scissors beats Paper" || result === "You lose! Rock beats Scissors") {
-//             cs++;
-//             computerScore.textContent = cs;
-//         }
-//     }
+// 7) create a function that updates the score and displays it in the DOM
+let playerScore = 0;
+let computerScore = 0;
 
-// //     if (ps === 5) {
-// //         alert("You win!");
-// //     }
-// //     if (cs === 5) {
-// //         alert("You lose!");
-// //     }
-// }
+const updateScore = (result) => {
+    const playerScoreDisplay = document.querySelector('.player__score');
+    const computerScoreDisplay = document.querySelector('.computer__score');
+    if (result === "You win! Rock beats Scissors" || result === "You win! Paper beats Rock" || result === "You win! Scissors beats Paper") {
+        playerScore++;
+        playerScoreDisplay.textContent = playerScore;
+    } else if (result === "You lose! Paper beats Rock" || result === "You lose! Scissors beats Paper" || result === "You lose! Rock beats Scissors") {
+        computerScore++;
+        computerScoreDisplay.textContent = computerScore;
+    }
+}
+
+
+// 8) create a function that plays 5 rounds
+
+
+
+// 9) create a function that displays the winner
