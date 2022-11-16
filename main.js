@@ -22,8 +22,8 @@ IOFC:
         6) if playerSelection === 'paper' && computerSelection === 'scissors', computer wins
         7) if playerSelection === 'scissors' && computerSelection === 'paper', player wins
         8) if playerSelection === 'scissors' && computerSelection === 'rock', computer wins
-
         
+
 Algorithm:
 BEGIN
     1) get player selection by add event listener to the images
@@ -157,13 +157,11 @@ resetButton.addEventListener('click', () => {
 // 11) if there is any click on the buttons after the game is over, the game resets
 buttons.forEach((button) => {
     button.addEventListener('click', e => {
-        if (playerScore === 6 || computerScore === 6) {
+        if (playerScore === 5 || computerScore === 5) {
             playerScore = 0;
             computerScore = 0;
-            removeWeapons();
             playerScoreDisplay.textContent = playerScore;
             computerScoreDisplay.textContent = computerScore;
-            winnerDisplay.textContent = '';
         }
     });
 });
