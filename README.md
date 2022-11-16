@@ -1,18 +1,9 @@
 # Rock-Paper-Scissors
 
 This a simple game of Rock-Paper-Scissors game in javascript. The game is played against the computer. The computer randomly chooses between rock, paper and scissors. The user selects one of the three options by clicking on the respective button. The game is played for 5 rounds. The winner is declared at the end of the game, and the game automatically resets.
-
-
-[...]
-    
-    [...]
-
-[...]
-
-
 ## Screenshots
 
-[![Screenshot-1](rpss.png)](rpss.png)
+[![rps](imgs/rpss.png)](imgs/rpss.png)
 
 ## How to play
 
