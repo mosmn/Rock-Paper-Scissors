@@ -1,10 +1,5 @@
 /*
-Problem: create a rock, paper, scissors game that plays against the computer.
-- create a function called getComputerChoice that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. We’ll use this function in the game to make the computer’s play.
-- Write a function called playRound that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
-  Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
-- Write a NEW function called game(). Call the playRound function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end.
-- Use prompt() to get input from the user. Read the docs here if you need to.
+PROJECT: create a rock, paper, scissors game that plays against the computer.
 
 IOFC:
      Input : 
@@ -27,11 +22,8 @@ IOFC:
         6) if playerSelection === 'paper' && computerSelection === 'scissors', computer wins
         7) if playerSelection === 'scissors' && computerSelection === 'paper', player wins
         8) if playerSelection === 'scissors' && computerSelection === 'rock', computer wins
-        9) game() plays 5 rounds
-        10) game() keeps score and reports a winner or loser at the end
 
         
-
 Algorithm:
 BEGIN
     1) get player selection by add event listener to the images
@@ -43,14 +35,15 @@ BEGIN
     7) create a function that updates the score
     8) create a function that plays 5 rounds
     9) create a function that displays the winner
-    10) create a function that resets the game and score when the reset button is clicked
+    10) create a function that resets the game
+    11) if there is any click on the buttons after the game is over, the game resets
 END
 */ 
 
 // 1) get player selection by add event listener to the images
-let buttons = document.querySelectorAll(".button");
+const buttons = document.querySelectorAll(".button");
 
-let playerSelection = buttons.forEach((button) => {
+buttons.forEach((button) => {
     button.addEventListener('click', e => {
         const playerSelection = button.id.toLowerCase();
         let computerSelection = getComputerChoice();
@@ -138,9 +131,9 @@ const updateScore = (result) => {
 // 8) create a function that plays 5 rounds
 const game = (playerScore, computerScore) => {
     if (playerScore === 5) {
-        return "You win the game!";
-    } else if (computerScore === 5) {
-        return "You lose the game!";
+        return `You win the game! ${playerScore} - ${computerScore}`;
+        } else if (computerScore === 5) {
+        return `You lose the game! ${playerScore} - ${computerScore}`;
     }
 }
 
@@ -161,6 +154,20 @@ resetButton.addEventListener('click', () => {
     winnerDisplay.textContent = '';
 });
 
-// 11) create a function that stops the game when the winner is declared
+// 11) if there is any click on the buttons after the game is over, the game resets
+buttons.forEach((button) => {
+    button.addEventListener('click', e => {
+        if (playerScore === 6 || computerScore === 6) {
+            playerScore = 0;
+            computerScore = 0;
+            removeWeapons();
+            playerScoreDisplay.textContent = playerScore;
+            computerScoreDisplay.textContent = computerScore;
+            winnerDisplay.textContent = '';
+        }
+    });
+});
+
+
 
 
