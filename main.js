@@ -1,4 +1,12 @@
+let playerScore = 0;
+let computerScore = 0;
+const playerScoreDisplay = document.querySelector('.player__score');
+const computerScoreDisplay = document.querySelector('.computer__score');
 const buttons = document.querySelectorAll(".button");
+const imageSelection = document.querySelector('.image__selection');
+const resetButton = document.querySelector('.game__reset--btn');
+const winnerDisplay = document.querySelector('.game__result--title');
+
 
 buttons.forEach((button) => {
     button.addEventListener('click', e => {
@@ -39,8 +47,6 @@ const playRound = (computerSelection, playerSelection) => {
     }
 }
 
-const imageSelection = document.querySelector('.image__selection');
-
 const weapons = (playerSelection, computerSelection) => {
     const playerWeapon = document.createElement('img');
     const computerWeapon = document.createElement('img');
@@ -63,10 +69,6 @@ const removeWeapons = () => {
     removeResult.innerHTML = '';
 }
 
-let playerScore = 0;
-let computerScore = 0;
-const playerScoreDisplay = document.querySelector('.player__score');
-const computerScoreDisplay = document.querySelector('.computer__score');
 const updateScore = (result) => {
     if (result === "You win! Rock beats Scissors" || result === "You win! Paper beats Rock" || result === "You win! Scissors beats Paper") {
         playerScore++;
@@ -87,12 +89,10 @@ const game = (playerScore, computerScore) => {
     }
 }
 
-const winnerDisplay = document.querySelector('.game__result--title');
 const displayWinner = (game) => {
     winnerDisplay.textContent = game;
 }
 
-const resetButton = document.querySelector('.game__reset--btn');
 resetButton.addEventListener('click', () => {
     playerScore = 0;
     computerScore = 0;
