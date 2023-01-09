@@ -1,18 +1,20 @@
 let playerScore = 0;
 let computerScore = 0;
+
 const playerScoreDisplay = document.querySelector('.player__score');
 const computerScoreDisplay = document.querySelector('.computer__score');
 const buttons = document.querySelectorAll(".button");
 const imageSelection = document.querySelector('.image__selection');
 const resetButton = document.querySelector('.game__reset--btn');
 const winnerDisplay = document.querySelector('.game__result--title');
-const toggle = document.querySelectorAll(".toggle");
+const toggle = document.querySelector(".toggle");
+const root = document.documentElement;
 
 
 buttons.forEach((button) => {
     button.addEventListener('click', e => {
         const playerSelection = button.id.toLowerCase();
-        let computerSelection = getComputerChoice();
+        const computerSelection = getComputerChoice();
         let result = playRound(computerSelection, playerSelection);
         removeWeapons();
         weapons(playerSelection, computerSelection);
@@ -113,6 +115,51 @@ buttons.forEach((button) => {
         }
     });
 });
+
+// function setTheme() {
+//     const root = document.documentElement;
+//     const newTheme = root.className === 'dark' ? 'light' : 'dark';
+//     root.className = newTheme;
+    
+//     document.querySelector('.theme-name').textContent = newTheme;
+//   }
+  
+//   document.querySelector('.theme-toggle').addEventListener('click', setTheme)
+    // if (root.className === 'dark'){
+    //     playerWeapon.src = `./imgs/${"l" + playerSelection}.png`;
+    //     computerWeapon.src = `./imgs/${"l" + computerSelection}.png`;
+    // } else {
+    //     playerWeapon.src = `./imgs/${playerSelection}.png`;
+    //     computerWeapon.src = `./imgs/${computerSelection}.png`;
+    // }
+
+root.className = 'light';
+const lightdark = () => {
+    const logo = document.querySelector('img[alt = "logo"]');
+    const sm = document.querySelector('img[alt = "sm"]');
+    const rock = document.querySelector('img[alt = "rock"]');
+    const paper = document.querySelector('img[alt = "paper"]');
+    const scissors = document.querySelector('img[alt = "scissors"]');
+
+    const newTheme = root.className === 'dark' ? 'light' : 'dark';
+    root.className = newTheme;
+
+    if (root.className === 'dark'){
+        logo.setAttribute('src', 'imgs/wrps.png');
+        sm.setAttribute('src', 'imgs/sun.png');
+        rock.setAttribute('src', 'imgs/lrock.png');
+        paper.setAttribute('src', 'imgs/lpaper.png');
+        scissors.setAttribute('src', 'imgs/lscissors.png');
+    } else {
+        logo.setAttribute('src', 'imgs/brps.png');
+        sm.setAttribute('src', 'imgs/moon.png');
+        rock.setAttribute('src', 'imgs/rock.png');
+        paper.setAttribute('src', 'imgs/paper.png');
+        scissors.setAttribute('src', 'imgs/scissors.png');
+    }
+}
+
+toggle.addEventListener('click', lightdark);
 
 
 

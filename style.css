@@ -3,19 +3,32 @@
 :root.dark {
     --bg-color: linear-gradient(60deg, white, black);
     --title-color: rgb(18, 18, 18);
-    --title-shadow: rgb(240, 240, 240);
-    --subheading:  rgb(240, 240, 240):
+    --title-shadow: 0 0 10px rgb(240, 240, 240);
+    --btns-bg: rgb(18, 18, 18);
+    --btns-shadow: 0 0 10px rgb(240, 240, 240);
+    --sub-heading: rgb(240, 240, 240);
+    --game-bg: rgb(18, 18, 18);
+    --score: rgb(240, 240, 240);
+    --restart-btn-color: rgb(18, 18, 18);
+    --restart-btn-shadow: 0 0 10px rgb(240, 240, 240);
+
 }
   
 :root.light {
-    --border-btn: 1px solid rgb(36, 36, 36);
-    --color-base-bg: rgb(240, 240, 240);
-    --color-base-text: rgb(18, 18, 18);
-    --color-btn-bg: rgb(220, 220, 220);
+    --bg-color: linear-gradient(60deg, black, white);
+    --title-color: rgb(240, 240, 240);
+    --title-shadow: 0 0 10px rgb(18, 18, 18);
+    --btns-bg: rgb(240, 240, 240);
+    --btns-shadow: 0 0 10px rgb(18, 18, 18);
+    --sub-heading: rgb(18, 18, 18);
+    --game-bg: rgb(240, 240, 240);
+    --score: rgb(18, 18, 18);
+    --restart-btn-color: rgb(240, 240, 240);
+    --restart-btn-shadow: 0 0 10px rgb(18, 18, 18);
 }
 
 body {
-    background: linear-gradient(60deg, black, white);
+    background: var(--bg-color);
 }
 
 .game__title {
@@ -24,11 +37,16 @@ body {
     align-items: center;
     font-size: 2.5rem;
     font-weight: 700;
-    color: #fff;
-    text-shadow: 0 0 10px #000;
+    color: var(--title-color);
+    text-shadow: var(--title-shadow);
     margin: 20px 0 100px 0;
     padding: 0;
     height: 100%;
+}
+
+h2,
+.displayresult {
+    color: var(--sub-heading);
 }
 
 .playerandcomputer {
@@ -63,10 +81,15 @@ body {
     width: 550px;
     height: 300px;
     border-radius: 50%;
-    background-color: #fff;
-    box-shadow: 0 0 10px #000;
+    background-color: var(--btns-bg);
+    box-shadow: var(--btns-shadow);
     margin: 0;
     padding: 50px 0 0 40px;
+}
+
+.you,
+.computer {
+    color: var(--score);
 }
 
 .game__score {
@@ -118,21 +141,23 @@ body {
 .game__reset--btn {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #fff;
-    text-shadow: 0 0 10px #000;
+    color: var(--restart-btn-color);
+    background-color: var(--restart-btn-color);
+    text-shadow: var(--restart-btn-shadow);
     padding: 10;
     height: 100%;
 }
 
-.button {
+.button,
+.toggle {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-color: #fff;
-    box-shadow: 0 0 10px #000;
+    background-color: var(--btns-bg);
+    box-shadow: var(--btns-shadow);
     margin: 0;
     padding: 0;
 }
@@ -145,12 +170,25 @@ body {
     height: 60px;
 }
 
-img[alt = "moon"] {
+img[alt = "logo"] {
+    width: 300px;
+    height: 300px;
+}
+
+img[alt = "sm"] {
     width: 30px;
     height: 30px;
 }
 
-.button:hover {
+img[alt = "rock"],
+img[alt = "paper"],
+img[alt = "scissors"] {
+    width: 60px;
+    height: 65px;
+}
+
+.button:hover,
+.toggle:hover {
     cursor: pointer;
     transform: scale(1.1);
     box-shadow: 0 0 20px 1px;
