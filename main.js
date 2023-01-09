@@ -53,8 +53,8 @@ const playRound = (computerSelection, playerSelection) => {
 const weapons = (playerSelection, computerSelection) => {
     const playerWeapon = document.createElement('img');
     const computerWeapon = document.createElement('img');
-    playerWeapon.setAttribute('class', playerSelection);
-    computerWeapon.setAttribute('class', computerSelection);
+    playerWeapon.className = playerSelection;
+    computerWeapon.className = computerSelection;
 
     if (root.className === 'dark'){
         playerWeapon.src = `./imgs/${"l" + playerSelection}.png`;
