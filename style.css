@@ -1,8 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+:root.dark {
+    --border-btn: 1px solid rgb(220, 220, 220);
+    --color-base-bg: rgb(18, 18, 18);
+    --color-base-text: rgb(240, 240, 240);
+    --color-btn-bg: rgb(36, 36, 36);
+}
+  
+:root.light {
+    --border-btn: 1px solid rgb(36, 36, 36);
+    --color-base-bg: rgb(240, 240, 240);
+    --color-base-text: rgb(18, 18, 18);
+    --color-btn-bg: rgb(220, 220, 220);
+}
+
 body {
     background: linear-gradient(80deg, black, white);
 }
+
 .game__title {
     display: flex;
     justify-content: center;
@@ -120,6 +135,19 @@ body {
     box-shadow: 0 0 10px #000;
     margin: 0;
     padding: 0;
+}
+
+.toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+}
+
+img[alt = "moon"] {
+    width: 30px;
+    height: 30px;
 }
 
 .button:hover {
