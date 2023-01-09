@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 :root.dark {
-    --border-btn: 1px solid rgb(220, 220, 220);
-    --color-base-bg: rgb(18, 18, 18);
-    --color-base-text: rgb(240, 240, 240);
-    --color-btn-bg: rgb(36, 36, 36);
+    --bg-color: linear-gradient(60deg, white, black);
+    --title-color: rgb(18, 18, 18);
+    --title-shadow: rgb(240, 240, 240);
+    --subheading:  rgb(240, 240, 240):
 }
   
 :root.light {
@@ -15,7 +15,7 @@
 }
 
 body {
-    background: linear-gradient(80deg, black, white);
+    background: linear-gradient(60deg, black, white);
 }
 
 .game__title {

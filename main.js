@@ -6,6 +6,7 @@ const buttons = document.querySelectorAll(".button");
 const imageSelection = document.querySelector('.image__selection');
 const resetButton = document.querySelector('.game__reset--btn');
 const winnerDisplay = document.querySelector('.game__result--title');
+const toggle = document.querySelectorAll(".toggle");
 
 
 buttons.forEach((button) => {
