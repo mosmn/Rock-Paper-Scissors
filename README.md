@@ -25,7 +25,7 @@ The biggest challenge i faced was the logic for the game. I had to think about t
 
 ## Future features
 
-- Add a light/dark mode toggle
+- Add a light/dark mode toggle (DONE)
 - Add a timer
 - Add a visual/sound effect when the game is won or lost
 - Add a score counter
