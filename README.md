@@ -32,4 +32,3 @@ The biggest challenge i faced was the logic for the game. I had to think about t
 - Add a reset button
 - Add a play again button
 - Add a 3 round game mode
-- Add a 10 round game mode
